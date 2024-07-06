@@ -1,0 +1,13 @@
+name: hng-tasks
+
+services:
+  - name: hng-endpoints
+    type: web
+    ports:
+      - 8000:8000
+    build:
+      context: django-app
+    run:
+      command: gunicorn hng_tasks.wsgi:application --bind 0.0.0.0:8000
+    env:
+      DJANGO_SETTINGS_MODULE: hng_tasks.settings
